@@ -34,6 +34,5 @@ test("should be able to choose country", async ({ page }) => {
 
   await signUpPage.companyCountry.click();
 
-  await signUpPage.countryList.locator('li', { hasText: searchCountry })
-    .click({ force: true });
+  await signUpPage.countryList.locator('li', { hasText: searchCountry }).click({ force: true });
 })
