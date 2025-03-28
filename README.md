@@ -10,7 +10,7 @@ My approach includes **GitHub Actions** for continuous integration, ensuring tha
 
 ##  Installation and Running Tests  
 
-### 1️ Clone the Repository  
+## 1️ Clone the Repository  
 ```sh
 git clone https://github.com/RummyCodes/expensing-hw
 ```
