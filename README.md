@@ -10,20 +10,20 @@ My approach includes **GitHub Actions** for continuous integration, ensuring tha
 
 ##  Installation and Running Tests  
 
-## 1️ Clone the Repository  
+## 1️. Clone the Repository:  
 ```sh
 git clone https://github.com/RummyCodes/expensing-hw
 ```
 
-## 2️ Install dependencies:
+## 2️. Install dependencies:
 ```
 npm install
 ```
-## 3️ Run all tests:
+## 3️. Run all tests:
 ```
 npx playwright test
 ```
-## 4️ To run specific tests:
+## 4️. To run specific tests:
 ```
 npx playwright test tests/apiContry.test.ts
 npx playwright test tests/countryUI.test.ts
