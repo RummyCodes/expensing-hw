@@ -13,12 +13,11 @@ test.beforeEach(async ({ page }) => {
   );
 });
 
-
-test("should be able to choose country", async ({ page }) => {
+test("Should be able to choose new added country", async ({ page }) => {
 
   const signUpPage = new SignupPage(page);
   const searchCountry = "Sweden";
-
+  const searchCountryCode = "SE";
 
   await page.goto('/users/sign_up');
 
@@ -32,17 +31,14 @@ test("should be able to choose country", async ({ page }) => {
   await signUpPage.phoneNumber.fill(faker.phone.number());
   await signUpPage.submitButton.click();
 
-  await page.locator('input[name="organizationName"]').fill('Test');
+  await signUpPage.companyName.fill(faker.company.name());
   await signUpPage.companyCountry.click();
   await signUpPage.countryList.locator('li', { hasText: searchCountry }).click({force:true});
-
-
-  
 
   await page.route('**/v0/registration/register', async (route, request) => {
     const postData = request.postDataJSON();
     
-    expect(postData.country).toBe('SE');
+    expect(postData.country).toBe(searchCountryCode);
     
     await route.abort();
   });
