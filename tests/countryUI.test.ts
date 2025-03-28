@@ -44,7 +44,7 @@ test("should be able to choose country", async ({ page }) => {
     
     expect(postData.country).toBe('SE');
     
-    await route.abort(); // abort the request (чтобы базу не засирать, реквест останавливаю)
+    await route.abort();
   });
   
   await signUpPage.submitButton.click();
