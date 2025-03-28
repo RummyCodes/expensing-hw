@@ -32,9 +32,22 @@ test("should be able to choose country", async ({ page }) => {
   await signUpPage.phoneNumber.fill(faker.phone.number());
   await signUpPage.submitButton.click();
 
+  await page.locator('input[name="organizationName"]').fill('Test');
   await signUpPage.companyCountry.click();
+  await signUpPage.countryList.locator('li', { hasText: searchCountry }).click({force:true});
 
-  await signUpPage.countryList.locator('li', { hasText: searchCountry }).toBeVisible();
+
   
-  await signUpPage.countryList.locator('li', { hasText: searchCountry }).click();
+
+  await page.route('**/v0/registration/register', async (route, request) => {
+    const postData = request.postDataJSON();
+    
+    expect(postData.country).toBe('SE');
+    
+    await route.abort(); // abort the request (чтобы базу не засирать, реквест останавливаю)
+  });
+  
+  await signUpPage.submitButton.click();
+
 })
+
